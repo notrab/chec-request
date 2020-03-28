@@ -13,7 +13,6 @@ class Chec {
       ...options,
     };
     this.headers = {
-      Accept: 'application/json',
       'Content-Type': 'application/json',
       'X-Authorization': token,
       ...headers,
