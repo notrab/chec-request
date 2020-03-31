@@ -40,6 +40,34 @@ request('products', {
 }).then(products => console.log(products));
 ```
 
+### `GET` with params
+
+```js
+const { Chec, request } = require('chec-request');
+
+const commerce = new Chec('CHEC_API_TOKEN');
+
+commerce
+  .get('products', {
+    limit: 5,
+    category_slug: 'accessories',
+  })
+  .then(products => console.log(products))
+  .catch(err => console.log(err));
+
+// Or with a simple request
+
+request('products', {
+  token: 'CHEC_API_TOKEN',
+  params: {
+    limit: 5,
+    category_slug: 'accessories',
+  },
+})
+  .then(products => console.log(products))
+  .catch(err => console.log(err));
+```
+
 ### `POST`
 
 ```js

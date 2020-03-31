@@ -31,11 +31,17 @@ class Chec {
     return this;
   }
 
-  async request({ endpoint, method = undefined, data = undefined }) {
+  async request({ endpoint, params, method = undefined, data = undefined }) {
     const { baseUrl, version } = this.options;
     const headers = this.headers;
 
-    const url = `${baseUrl}/${version}/${endpoint}`;
+    const queryString = Object.keys(params).length
+      ? `?${Object.keys(params)
+          .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
+          .join('&')}`
+      : undefined;
+
+    const url = `${baseUrl}/${version}/${endpoint}${queryString}`;
 
     const response = await fetch(url, {
       headers,
@@ -50,9 +56,10 @@ class Chec {
     return json;
   }
 
-  get(endpoint) {
+  get(endpoint, params) {
     return this.request({
       endpoint,
+      params,
     });
   }
 
@@ -61,6 +68,7 @@ class Chec {
       method: 'POST',
       endpoint,
       data,
+      params,
     });
   }
 
