@@ -35,7 +35,7 @@ class Chec {
     const { baseUrl, version } = this.options;
     const headers = this.headers;
 
-    const queryString = params
+    const queryString = Object.keys(params).length
       ? `?${Object.keys(params)
           .map(
             (k) => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`
