@@ -31,7 +31,12 @@ class Chec {
     return this;
   }
 
-  async request({ endpoint, params, method = undefined, data = undefined }) {
+  async request({
+    endpoint,
+    params = {},
+    method = undefined,
+    data = undefined,
+  }) {
     const { baseUrl, version } = this.options;
     const headers = this.headers;
 
