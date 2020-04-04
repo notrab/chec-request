@@ -35,13 +35,17 @@ class Chec {
     const { baseUrl, version } = this.options;
     const headers = this.headers;
 
-    const queryString = Object.keys(params).length
+    const queryString = params
       ? `?${Object.keys(params)
-          .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
+          .map(
+            (k) => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`
+          )
           .join('&')}`
-      : undefined;
+      : '';
 
     const url = `${baseUrl}/${version}/${endpoint}${queryString}`;
+
+    console.log(url);
 
     const response = await fetch(url, {
       headers,
