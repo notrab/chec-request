@@ -50,8 +50,6 @@ class Chec {
 
     const url = `${baseUrl}/${version}/${endpoint}${queryString}`;
 
-    console.log(url);
-
     const response = await fetch(url, {
       headers,
       ...(method && { method }),
