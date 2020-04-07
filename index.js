@@ -75,7 +75,6 @@ class Chec {
       method: 'POST',
       endpoint,
       data,
-      params,
     });
   }
 
