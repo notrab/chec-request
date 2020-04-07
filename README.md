@@ -11,11 +11,13 @@ const { Chec, request } = require('chec-request');
 
 const commerce = new Chec('CHEC_API_TOKEN');
 
-commerce.get('products').then(products => console.log(products));
+commerce.get('products').then((products) => console.log(products));
 
 // Or with a simple request
 
-request(endpoint, { token: 'CHEC_API_TOKEN' }).then(data => console.log(data));
+request(endpoint, { token: 'CHEC_API_TOKEN' }).then((data) =>
+  console.log(data)
+);
 ```
 
 ## Examples
@@ -31,16 +33,16 @@ const commerce = new Chec('CHEC_API_TOKEN');
 
 commerce
   .get('products/prod_f89398fs489g')
-  .then(products => console.log(products));
+  .then((products) => console.log(products));
 
 // Or with a simple request
 
 request('products', {
   token: 'CHEC_API_TOKEN',
-}).then(products => console.log(products));
+}).then((products) => console.log(products));
 ```
 
-### `GET` with params
+### `GET` with params
 
 ```js
 const { Chec, request } = require('chec-request');
@@ -52,8 +54,8 @@ commerce
     limit: 5,
     category_slug: 'accessories',
   })
-  .then(products => console.log(products))
-  .catch(err => console.log(err));
+  .then((products) => console.log(products))
+  .catch((err) => console.log(err));
 
 // Or with a simple request
 
@@ -64,8 +66,8 @@ request('products', {
     category_slug: 'accessories',
   },
 })
-  .then(products => console.log(products))
-  .catch(err => console.log(err));
+  .then((products) => console.log(products))
+  .catch((err) => console.log(err));
 ```
 
 ### `POST`
@@ -84,7 +86,7 @@ const data = {
 
 const commerce = new Chec('CHEC_API_TOKEN');
 
-commerce.post('discounts', data).then(discount => console.log(discount));
+commerce.post('discounts', data).then((discount) => console.log(discount));
 
 // Or with a simple request
 
@@ -92,7 +94,7 @@ request('discounts', {
   token: 'CHEC_API_TOKEN',
   method: 'POST',
   data,
-}).then(data => console.log(data));
+}).then((data) => console.log(data));
 ```
 
 ### `PUT`
@@ -109,7 +111,7 @@ const data = {
 
 const commerce = new Chec('CHEC_API_TOKEN');
 
-commerce.put('orders/orderId', data).then(discount => console.log(discount));
+commerce.put('orders/orderId', data).then((discount) => console.log(discount));
 
 // Or with a simple request
 
@@ -117,7 +119,7 @@ request('orders/orderId', {
   token: 'CHEC_API_TOKEN',
   method: 'PUT',
   data,
-}).then(data => console.log(data));
+}).then((data) => console.log(data));
 ```
 
 ### `DELETE`
@@ -127,12 +129,12 @@ const { Chec, request } = require('chec-request');
 
 const commerce = new Chec('CHEC_API_TOKEN');
 
-commerce.delete('discounts/RHKZKU71WG').then(res => console.log(res));
+commerce.delete('discounts/RHKZKU71WG').then((res) => console.log(res));
 
 // Or with a simple request
 
 request('discounts/RHKZKU71WG', {
   token: 'CHEC_API_TOKEN',
   method: 'DELETE',
-}).then(res => console.log(res));
+}).then((res) => console.log(res));
 ```
