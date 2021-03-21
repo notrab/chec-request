@@ -145,7 +145,7 @@ request('discounts/RHKZKU71WG', {
 }).then((res) => console.log(res));
 ```
 
-### Initialize with options
+### Initialize with options
 
 ```js
 const { Chec, request } = require('chec-request');
@@ -164,6 +164,31 @@ request('products', {
   options: {
     baseUrl: 'http://localhost:5000',
     version: 'v2',
+  },
+}).then((res) => console.log(res));
+```
+
+### Initialize with headers
+
+```js
+const { Chec, request } = require('chec-request');
+
+const commerce = new Chec('CHEC_API_TOKEN', {
+  headers: {
+    'Custom-Header': 'some value',
+  },
+});
+
+commerce.get('merchant').then((res) => console.log(res));
+
+// Or with a simple request
+
+request('merchant', {
+  token: 'CHEC_API_TOKEN',
+  options: {
+    headers: {
+      'Custom-Header': 'some value',
+    },
   },
 }).then((res) => console.log(res));
 ```
