@@ -20,6 +20,12 @@ request(endpoint, { token: 'CHEC_API_TOKEN' }).then((data) =>
 );
 ```
 
+## Install
+
+```bash
+npm install chec-request
+```
+
 ## Examples
 
 Some API endpoints require a **secret key**, you should check the [API documentation](https://commercejs.com/docs/api) and pass the applicable `TOKEN`.
@@ -136,5 +142,28 @@ commerce.delete('discounts/RHKZKU71WG').then((res) => console.log(res));
 request('discounts/RHKZKU71WG', {
   token: 'CHEC_API_TOKEN',
   method: 'DELETE',
+}).then((res) => console.log(res));
+```
+
+### Initialize with options
+
+```js
+const { Chec, request } = require('chec-request');
+
+const commerce = new Chec('CHEC_API_TOKEN', {
+  baseUrl: 'http://localhost:5000',
+  version: 'v2',
+});
+
+commerce.get('products').then((res) => console.log(res));
+
+// Or with a simple request
+
+request('products', {
+  token: 'CHEC_API_TOKEN',
+  options: {
+    baseUrl: 'http://localhost:5000',
+    version: 'v2',
+  },
 }).then((res) => console.log(res));
 ```

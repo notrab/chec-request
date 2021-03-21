@@ -1,7 +1,7 @@
 require('cross-fetch/polyfill');
 
 class Chec {
-  constructor(token, ...options) {
+  constructor(token, options = {}) {
     if (!token) throw new Error('No API token provided');
 
     const { headers } = options;
@@ -40,9 +40,15 @@ class Chec {
     const { baseUrl, version } = this.options;
     const headers = this.headers;
 
-    const url = new URL(`${baseUrl}/${version}/${endpoint}`);
+    const queryString = Object.keys(params).length
+      ? `?${Object.keys(params)
+          .map(
+            (k) => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`
+          )
+          .join('&')}`
+      : '';
 
-    if (Object.keys(params)) url.search(new URLSearchParams(params));
+    const url = `${baseUrl}/${version}/${endpoint}${queryString}`;
 
     const response = await fetch(url, {
       headers,
@@ -88,8 +94,8 @@ class Chec {
   }
 }
 
-const request = async (endpoint, { token, ...rest }) => {
-  const client = new Chec(token);
+const request = async (endpoint, { token, options, ...rest }) => {
+  const client = new Chec(token, options);
 
   return client.request({
     endpoint,
