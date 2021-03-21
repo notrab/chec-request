@@ -13,8 +13,9 @@ class Chec {
       ...options,
     };
     this.headers = {
-      'Content-Type': 'application/json',
       'X-Authorization': token,
+      'X-Chec-Agent': 'notrab/chec-request',
+      'Content-Type': 'application/json',
       ...headers,
     };
   }
