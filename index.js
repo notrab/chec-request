@@ -40,15 +40,9 @@ class Chec {
     const { baseUrl, version } = this.options;
     const headers = this.headers;
 
-    const queryString = Object.keys(params).length
-      ? `?${Object.keys(params)
-          .map(
-            (k) => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`
-          )
-          .join('&')}`
-      : '';
+    const url = new URL(`${baseUrl}/${version}/${endpoint}`);
 
-    const url = `${baseUrl}/${version}/${endpoint}${queryString}`;
+    if (Object.keys(params)) url.search(new URLSearchParams(params));
 
     const response = await fetch(url, {
       headers,
